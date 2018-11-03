@@ -1,0 +1,33 @@
+.container {
+  font-size: 1.5rem;
+  h1 {
+    text-align: center;
+  }
+
+  .content {
+    display: flex;
+
+    .left-side {
+      padding: 0 0 0 40%;
+    }
+    .right-side {
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0 10px;
+      display: inline-block;
+
+      li {
+        padding: 5px;
+        height: 30px;
+        text-anchor: end;
+      }
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
