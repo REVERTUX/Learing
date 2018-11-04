@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "englishwords"
+  database: "dictionary"
 });
 
 router.post("/", function(req, res) {

@@ -1,16 +1,23 @@
 .container {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  font-family: "Open Sans", sans-serif;
   h1 {
     text-align: center;
   }
 
   .content {
     display: flex;
-
+    justify-content: center;
     .left-side {
-      padding: 0 0 0 40%;
     }
     .right-side {
+      .btn-list {
+        padding: 0 0 0 20px;
+        li {
+          border: none;
+          padding: 3px;
+        }
+      }
     }
 
     ul {
@@ -20,14 +27,39 @@
       display: inline-block;
 
       li {
-        padding: 5px;
+        padding: 2px;
         height: 30px;
-        text-anchor: end;
+        margin: 5px 0;
+        border: 1px solid #000;
+        text-align: right;
+        cursor: pointer;
+        &:link {
+          color: white;
+        }
       }
     }
   }
 }
 
+.hidden-btn {
+  display: none;
+}
+
 .hidden {
   display: none;
+}
+
+.hidden-li {
+  color: #ffffff;
+  border: 1px solid #000000;
+}
+
+button {
+  cursor: pointer;
+}
+
+.fixed-checkbox {
+  position: fixed;
+  top: 50px;
+  right: 30px;
 }

@@ -1,15 +1,29 @@
 import React, { Component } from "react";
 import ListItem from "./ListItem";
-import { link } from "fs";
 import Form from "./Form";
 class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
       words: [],
-      isLoading: true
+      isLoading: true,
+      checkboxActive: false,
+      search: "",
+      hidden: ""
     };
   }
+  handleCheckboxChange = e => {
+    this.setState({
+      checkboxActive: e.target.checked
+    });
+  };
+
+  handleSearchChange = e => {
+    this.setState({
+      search: e.target.value
+    });
+  };
+
   componentDidMount() {
     this.setState({ isLoading: true });
     fetch("/showWords").then(res => {
@@ -30,18 +44,47 @@ class Layout extends Component {
       }
     });
   }
+
   render() {
-    const { words, isLoading } = this.state;
+    const { words, isLoading, checkboxActive, search } = this.state;
     return (
       <div className="container">
         <h1>Hello!</h1>
+        <div className="fixed-checkbox">
+          <label htmlFor="checkbox">pl/eng</label>
+          <input
+            type="checkbox"
+            onChange={this.handleCheckboxChange}
+            id="checkbox"
+          />
+        </div>
+        <div className="search">
+          <label htmlFor="">Search: </label>
+          <input
+            type="text"
+            onChange={this.handleSearchChange}
+            value={this.state.search}
+          />
+        </div>
         <Form />
         <div className="content">
           <div className="left-side">
             <ul>
               {!isLoading &&
                 words.map(words => (
-                  <ListItem Id={words.Id} words={words.PolWord} lang="pl" />
+                  <ListItem
+                    Id={words.Id}
+                    words={words.PolWord}
+                    checkboxActive={checkboxActive}
+                    lang="pl"
+                    hidden={
+                      search
+                        ? words.EngWord.includes(search)
+                          ? null
+                          : "hidden"
+                        : null
+                    }
+                  />
                 ))}
             </ul>
           </div>
@@ -49,19 +92,39 @@ class Layout extends Component {
             <ul>
               {!isLoading &&
                 words.map(words => (
-                  <ListItem Id={words.Id} words={words.EngWord} lang="eng" />
+                  <ListItem
+                    Id={words.Id}
+                    words={words.EngWord}
+                    checkboxActive={checkboxActive}
+                    lang="eng"
+                    hidden={
+                      search
+                        ? words.EngWord.includes(search)
+                          ? null
+                          : "hidden"
+                        : null
+                    }
+                  />
                 ))}
             </ul>
-            <ul>
+            <ul className="btn-list">
               {!isLoading &&
                 words.map(words => (
-                  <li>
+                  <li
+                    className={
+                      search
+                        ? words.EngWord.includes(search)
+                          ? null
+                          : "hidden"
+                        : null
+                    }
+                  >
                     <form action="/removeWord" method="POST">
                       <input
                         type="text"
                         value={words.Id}
                         name="Id"
-                        className="hidden"
+                        className="hidden-btn"
                       />
                       <button type="submit" Id={words.Id}>
                         -

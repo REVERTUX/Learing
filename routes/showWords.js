@@ -20,7 +20,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "englishwords"
+  database: "dictionary"
 });
 
 const app = express();

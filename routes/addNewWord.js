@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "englishwords"
+  database: "dictionary"
 });
 
 router.post("/", function(req, res) {
@@ -15,13 +15,16 @@ router.post("/", function(req, res) {
     PolWord: req.body.pol,
     EngWord: req.body.eng
   };
-  connection.query("INSERT INTO words SET ?", response, function(
-    err,
-    result,
-    fields
-  ) {
-    if (err) throw err;
-  });
+  const regex = /[a-zA-Z/]{3,}/;
+  if (regex.test(response.PolWord) && regex.test(response.EngWord)) {
+    connection.query("INSERT INTO words SET ?", response, function(
+      err,
+      result,
+      fields
+    ) {
+      if (err) throw err;
+    });
+  }
   res.redirect(req.get("referer"));
 });
 
