@@ -1,3 +1,9 @@
+body {
+  background-color: #202020;
+}
+p {
+  margin: 0;
+}
 .container {
   font-size: 1.2rem;
   font-family: "Open Sans", sans-serif;
@@ -16,6 +22,27 @@
         li {
           border: none;
           padding: 3px;
+        }
+      }
+    }
+    ul,
+    ol {
+      color: #ffffff;
+    }
+    ol {
+      margin: 0;
+      padding: 0 10px;
+      display: inline-block;
+
+      li {
+        padding: 2px;
+        height: 30px;
+        margin: 5px 0;
+        border: 1px solid #000;
+        text-align: right;
+        cursor: pointer;
+        &:link {
+          color: white;
         }
       }
     }
@@ -49,9 +76,8 @@
   display: none;
 }
 
-.hidden-li {
-  color: #ffffff;
-  border: 1px solid #000000;
+.hidden-p {
+  opacity: 0;
 }
 
 button {
@@ -62,4 +88,8 @@ button {
   position: fixed;
   top: 50px;
   right: 30px;
+}
+
+label {
+  color: #ffffff;
 }

@@ -24,17 +24,16 @@ class ListItem extends Component {
             <li
               key={Id}
               onClick={this.handleClick}
-              className={`${this.state.active ? null : "hidden-li"} ${
-                this.props.hidden
-              }
-              `}
+              className={this.props.hidden}
             >
-              {this.capitalizeFirstLetter(words)}
+              <p className={this.state.active ? null : "hidden-p"}>
+                {this.capitalizeFirstLetter(words)}
+              </p>
             </li>
           )}
           {lang === "eng" && (
             <li key={Id} className={this.props.hidden}>
-              {this.capitalizeFirstLetter(words)}
+              <p>{this.capitalizeFirstLetter(words)}</p>
             </li>
           )}
         </React.Fragment>
@@ -44,19 +43,18 @@ class ListItem extends Component {
         <React.Fragment>
           {lang === "pl" && (
             <li key={Id} className={this.props.hidden}>
-              {this.capitalizeFirstLetter(words)}
+              <p>{this.capitalizeFirstLetter(words)}</p>
             </li>
           )}
           {lang === "eng" && (
             <li
               key={Id}
               onClick={this.handleClick}
-              className={`${this.state.active ? null : "hidden-li"} ${
-                this.props.hidden
-              }
-              `}
+              className={this.props.hidden}
             >
-              {this.capitalizeFirstLetter(words)}
+              <p className={this.state.active ? null : "hidden-p"}>
+                {this.capitalizeFirstLetter(words)}
+              </p>
             </li>
           )}
         </React.Fragment>

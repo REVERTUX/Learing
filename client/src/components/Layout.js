@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ListItem from "./ListItem";
-import Form from "./Form";
+import Header from "./Header";
+import FormRemove from "./FormRemove";
 class Layout extends Component {
   constructor(props) {
     super(props);
@@ -8,8 +9,7 @@ class Layout extends Component {
       words: [],
       isLoading: true,
       checkboxActive: false,
-      search: "",
-      hidden: ""
+      search: ""
     };
   }
   handleCheckboxChange = e => {
@@ -47,29 +47,17 @@ class Layout extends Component {
 
   render() {
     const { words, isLoading, checkboxActive, search } = this.state;
+    const { header } = this.props;
     return (
       <div className="container">
-        <h1>Hello!</h1>
-        <div className="fixed-checkbox">
-          <label htmlFor="checkbox">pl/eng</label>
-          <input
-            type="checkbox"
-            onChange={this.handleCheckboxChange}
-            id="checkbox"
-          />
-        </div>
-        <div className="search">
-          <label htmlFor="">Search: </label>
-          <input
-            type="text"
-            onChange={this.handleSearchChange}
-            value={this.state.search}
-          />
-        </div>
-        <Form />
+        <Header
+          handleSearchChange={this.handleSearchChange}
+          handleCheckboxChange={this.handleCheckboxChange}
+          header={header}
+        />
         <div className="content">
           <div className="left-side">
-            <ul>
+            <ol>
               {!isLoading &&
                 words.map(words => (
                   <ListItem
@@ -86,7 +74,7 @@ class Layout extends Component {
                     }
                   />
                 ))}
-            </ul>
+            </ol>
           </div>
           <div className="right-side">
             <ul>
@@ -108,30 +96,11 @@ class Layout extends Component {
                 ))}
             </ul>
             <ul className="btn-list">
-              {!isLoading &&
-                words.map(words => (
-                  <li
-                    className={
-                      search
-                        ? words.EngWord.includes(search)
-                          ? null
-                          : "hidden"
-                        : null
-                    }
-                  >
-                    <form action="/removeWord" method="POST">
-                      <input
-                        type="text"
-                        value={words.Id}
-                        name="Id"
-                        className="hidden-btn"
-                      />
-                      <button type="submit" Id={words.Id}>
-                        -
-                      </button>
-                    </form>
-                  </li>
-                ))}
+              <FormRemove
+                isLoading={this.state.isLoading}
+                search={search}
+                words={words}
+              />
             </ul>
           </div>
         </div>

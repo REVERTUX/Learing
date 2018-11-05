@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
-class Form extends Component {
-  constructor(props) {
-    super(props);
-  }
+class FormAdd extends Component {
   render() {
     return (
       <form action="http://localhost:3001/addNewWord" method="POST">
@@ -17,4 +14,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default FormAdd;
