@@ -14,11 +14,11 @@ class App extends Component {
       },
       {
         path: "/about",
-        content: () => <Layout header={"About"} />
+        content: () => <Layout header={"About"} searched={"about"} />
       },
       {
         path: "/topics",
-        content: () => <Layout header={"Topic"} />
+        content: () => <Layout header={"Topic"} searched={"about"} />
       }
     ];
     return (

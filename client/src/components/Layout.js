@@ -47,13 +47,14 @@ class Layout extends Component {
 
   render() {
     const { words, isLoading, checkboxActive, search } = this.state;
-    const { header } = this.props;
+    const { header, searched } = this.props;
     return (
       <div className="container">
         <Header
           handleSearchChange={this.handleSearchChange}
           handleCheckboxChange={this.handleCheckboxChange}
           header={header}
+          searched={searched}
         />
         <div className="content">
           <div className="left-side">
@@ -99,6 +100,7 @@ class Layout extends Component {
               <FormRemove
                 isLoading={this.state.isLoading}
                 search={search}
+                searched={searched}
                 words={words}
               />
             </ul>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class FormRemove extends Component {
   render() {
-    const { search, isLoading, words } = this.props;
+    const { search, isLoading, words, searched } = this.props;
     return (
       <React.Fragment>
         {!isLoading &&
@@ -21,8 +21,9 @@ class FormRemove extends Component {
                   type="text"
                   value={words.Id}
                   name="Id"
-                  className="hidden-btn"
+                  className="hidden"
                 />
+                <input type="text" value={searched} className="hidden" />
                 <button type="submit" Id={words.Id}>
                   -
                 </button>

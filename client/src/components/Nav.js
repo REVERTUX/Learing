@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 class Nav extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div>
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -16,7 +16,7 @@ class Nav extends Component {
             <Link to="/topics">Topics</Link>
           </li>
         </ul>
-      </React.Fragment>
+      </div>
     );
   }
 }
