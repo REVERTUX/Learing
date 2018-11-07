@@ -16,23 +16,19 @@ class ListItem extends Component {
   };
 
   render() {
-    const { lang, Id, words, checkboxActive } = this.props;
+    const { lang, Id, words, checkboxActive, hidden } = this.props;
     if (checkboxActive) {
       return (
         <React.Fragment>
           {lang === "pl" && (
-            <li
-              key={Id}
-              onClick={this.handleClick}
-              className={this.props.hidden}
-            >
+            <li key={Id} onClick={this.handleClick} className={hidden}>
               <p className={this.state.active ? null : "hidden-p"}>
                 {this.capitalizeFirstLetter(words)}
               </p>
             </li>
           )}
           {lang === "eng" && (
-            <li key={Id} className={this.props.hidden}>
+            <li key={Id} className={hidden}>
               <p>{this.capitalizeFirstLetter(words)}</p>
             </li>
           )}
@@ -42,16 +38,12 @@ class ListItem extends Component {
       return (
         <React.Fragment>
           {lang === "pl" && (
-            <li key={Id} className={this.props.hidden}>
+            <li key={Id} className={hidden}>
               <p>{this.capitalizeFirstLetter(words)}</p>
             </li>
           )}
           {lang === "eng" && (
-            <li
-              key={Id}
-              onClick={this.handleClick}
-              className={this.props.hidden}
-            >
+            <li key={Id} onClick={this.handleClick} className={hidden}>
               <p className={this.state.active ? null : "hidden-p"}>
                 {this.capitalizeFirstLetter(words)}
               </p>

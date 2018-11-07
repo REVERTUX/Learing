@@ -12,12 +12,14 @@ var connection = mysql.createConnection({
 
 router.post("/", function(req, res) {
   response = {
+    EngWord: req.body.eng,
     PolWord: req.body.pol,
-    EngWord: req.body.eng
+    Type: req.body.type
   };
-  const regex = /[a-zA-Z/]{3,}/;
+  const table = req.body.table;
+  const regex = /[a-zA-Z/ęółśążźćń]{3,}/;
   if (regex.test(response.PolWord) && regex.test(response.EngWord)) {
-    connection.query("INSERT INTO words SET ?", response, function(
+    connection.query(`INSERT INTO ${table} SET ?`, response, function(
       err,
       result,
       fields

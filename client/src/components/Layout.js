@@ -57,54 +57,141 @@ class Layout extends Component {
           searched={searched}
         />
         <div className="content">
-          <div className="left-side">
-            <ol>
-              {!isLoading &&
-                words.map(words => (
-                  <ListItem
-                    Id={words.Id}
-                    words={words.PolWord}
-                    checkboxActive={checkboxActive}
-                    lang="pl"
-                    hidden={
-                      search
-                        ? words.EngWord.includes(search)
-                          ? null
-                          : "hidden"
-                        : null
-                    }
-                  />
-                ))}
-            </ol>
-          </div>
-          <div className="right-side">
-            <ul>
-              {!isLoading &&
-                words.map(words => (
-                  <ListItem
-                    Id={words.Id}
-                    words={words.EngWord}
-                    checkboxActive={checkboxActive}
-                    lang="eng"
-                    hidden={
-                      search
-                        ? words.EngWord.includes(search)
-                          ? null
-                          : "hidden"
-                        : null
-                    }
-                  />
-                ))}
-            </ul>
-            <ul className="btn-list">
-              <FormRemove
-                isLoading={this.state.isLoading}
-                search={search}
-                searched={searched}
-                words={words}
-              />
-            </ul>
-          </div>
+          <ol>
+            {!isLoading &&
+              words.map(words => (
+                <ListItem
+                  Id={words.Id}
+                  words={words.PolWord}
+                  checkboxActive={checkboxActive}
+                  lang="pl"
+                  hidden={
+                    search
+                      ? words.EngWord.includes(search)
+                        ? null
+                        : "hidden"
+                      : null
+                  }
+                />
+              ))}
+          </ol>
+
+          <ul>
+            {!isLoading &&
+              words.map(words => (
+                <ListItem
+                  Id={words.Id}
+                  words={words.EngWord}
+                  checkboxActive={checkboxActive}
+                  lang="eng"
+                  hidden={
+                    search
+                      ? words.EngWord.includes(search)
+                        ? null
+                        : "hidden"
+                      : null
+                  }
+                />
+              ))}
+          </ul>
+          <ul className="btn-list">
+            <FormRemove
+              isLoading={this.state.isLoading}
+              search={search}
+              searched={searched}
+              words={words}
+            />
+          </ul>
+          {/* <ol>
+            {!isLoading &&
+              words.map(words => (
+                <ListItem
+                  Id={words.Id}
+                  words={words.PolWord}
+                  checkboxActive={checkboxActive}
+                  lang="pl"
+                  hidden={
+                    search
+                      ? words.EngWord.includes(search)
+                        ? null
+                        : "hidden"
+                      : null
+                  }
+                />
+              ))}
+          </ol>
+
+          <ul>
+            {!isLoading &&
+              words.map(words => (
+                <ListItem
+                  Id={words.Id}
+                  words={words.EngWord}
+                  checkboxActive={checkboxActive}
+                  lang="eng"
+                  hidden={
+                    search
+                      ? words.EngWord.includes(search)
+                        ? null
+                        : "hidden"
+                      : null
+                  }
+                />
+              ))}
+          </ul>
+          <ul className="btn-list">
+            <FormRemove
+              isLoading={this.state.isLoading}
+              search={search}
+              searched={searched}
+              words={words}
+            />
+          </ul>
+          <ol>
+            {!isLoading &&
+              words.map(words => (
+                <ListItem
+                  Id={words.Id}
+                  words={words.PolWord}
+                  checkboxActive={checkboxActive}
+                  lang="pl"
+                  hidden={
+                    search
+                      ? words.EngWord.includes(search)
+                        ? null
+                        : "hidden"
+                      : null
+                  }
+                />
+              ))}
+          </ol>
+
+          <ul>
+            {!isLoading &&
+              words.map(words => (
+                <ListItem
+                  Id={words.Id}
+                  words={words.EngWord}
+                  checkboxActive={checkboxActive}
+                  lang="eng"
+                  hidden={
+                    search
+                      ? words.EngWord.includes(search)
+                        ? null
+                        : "hidden"
+                      : null
+                  }
+                />
+              ))}
+          </ul>
+          <ul className="btn-list">
+            <FormRemove
+              isLoading={this.state.isLoading}
+              search={search}
+              searched={searched}
+              words={words}
+            />
+          </ul> */}
         </div>
       </div>
     );

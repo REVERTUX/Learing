@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import Layout from "./Layout";
-import "./../scss/style.scss";
-import Nav from "./Nav";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./../scss/style.scss";
+import Layout from "./Layout";
+import Nav from "./Nav";
+import Home from "./HomePage";
 
 class App extends Component {
   render() {
@@ -10,15 +11,15 @@ class App extends Component {
       {
         path: "/",
         exact: true,
-        content: () => <Layout header={"Home"} />
+        content: () => <Home />
       },
       {
-        path: "/about",
-        content: () => <Layout header={"About"} searched={"about"} />
+        path: "/body",
+        content: () => <Layout header={"Body"} searched={"body"} />
       },
       {
-        path: "/topics",
-        content: () => <Layout header={"Topic"} searched={"about"} />
+        path: "/things",
+        content: () => <Layout header={"Things"} searched={"things"} />
       }
     ];
     return (
@@ -39,14 +40,6 @@ class App extends Component {
       </Router>
     );
   }
-}
-
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
 }
 
 export default App;
