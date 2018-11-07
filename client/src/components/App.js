@@ -15,11 +15,11 @@ class App extends Component {
       },
       {
         path: "/body",
-        content: () => <Layout header={"Body"} searched={"body"} />
+        content: () => <Layout header={"Body"} table={"body"} />
       },
       {
         path: "/things",
-        content: () => <Layout header={"Things"} searched={"things"} />
+        content: () => <Layout header={"Things"} table={"things"} />
       }
     ];
     return (

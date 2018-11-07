@@ -26,7 +26,15 @@ class Layout extends Component {
 
   componentDidMount() {
     this.setState({ isLoading: true });
-    fetch("/showWords").then(res => {
+    fetch("/showWords", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        table: this.props.table
+      })
+    }).then(res => {
       if (res.ok) {
         res.json().then(words =>
           this.setState({
@@ -61,8 +69,9 @@ class Layout extends Component {
             {!isLoading &&
               words.map(words => (
                 <ListItem
-                  Id={words.Id}
+                  ID={words.ID}
                   words={words.PolWord}
+                  type={words.type}
                   checkboxActive={checkboxActive}
                   lang="pl"
                   hidden={
@@ -80,8 +89,9 @@ class Layout extends Component {
             {!isLoading &&
               words.map(words => (
                 <ListItem
-                  Id={words.Id}
+                  ID={words.ID}
                   words={words.EngWord}
+                  type={words.type}
                   checkboxActive={checkboxActive}
                   lang="eng"
                   hidden={

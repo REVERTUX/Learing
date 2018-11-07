@@ -25,8 +25,10 @@ var connection = mysql.createConnection({
 
 const app = express();
 
-router.get("/", function(req, res) {
-  connection.query("SELECT * FROM words", function(err, result, fields) {
+router.post("/", function(req, res) {
+  const table = req.body.table;
+  console.log(table);
+  connection.query(`SELECT * FROM ${table}`, function(err, result, fields) {
     if (err) throw err;
     res.send(JSON.stringify(result));
   });
