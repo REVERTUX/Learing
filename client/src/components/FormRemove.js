@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class FormRemove extends Component {
   render() {
-    const { search, isLoading, words, searched } = this.props;
+    const { search, isLoading, words, table } = this.props;
     return (
       <React.Fragment>
         {!isLoading &&
@@ -17,14 +17,9 @@ class FormRemove extends Component {
               }
             >
               <form action="/removeWord" method="POST">
-                <input
-                  type="text"
-                  value={words.Id}
-                  name="Id"
-                  className="hidden"
-                />
-                <input type="text" value={searched} className="hidden" />
-                <button type="submit" Id={words.Id}>
+                <input type="hidden" value={words.ID} name="ID" />
+                <input type="hidden" value={table} name="table" />
+                <button type="submit" ID={words.ID}>
                   -
                 </button>
               </form>

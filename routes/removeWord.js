@@ -11,10 +11,10 @@ var connection = mysql.createConnection({
 });
 
 router.post("/", function(req, res) {
-  response = {
-    Id: req.body.Id
-  };
-  connection.query(`DELETE FROM words WHERE Id = ${response.Id}`, function(
+  const ID = req.body.ID;
+  const Table = req.body.table;
+
+  connection.query(`DELETE FROM ${Table} WHERE ID = ${ID}`, function(
     err,
     result,
     fields

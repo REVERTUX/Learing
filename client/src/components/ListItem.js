@@ -1,61 +1,73 @@
 import React, { Component } from "react";
-
+import FormRemove from "./FormRemove";
+import Item from "./Item";
 class ListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: false
-    };
-  }
-  handleClick = () => {
-    this.setState({ active: !this.state.active });
-  };
-
-  capitalizeFirstLetter = string => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
   render() {
-    const { lang, ID, words, checkboxActive, hidden, type } = this.props;
-    if (checkboxActive) {
-      return (
-        <React.Fragment>
-          {lang === "pl" && (
-            <li key={ID} onClick={this.handleClick} className={hidden}>
-              <p className={this.state.active ? null : "hidden-p"}>
-                {this.capitalizeFirstLetter(words)}
-              </p>
-            </li>
-          )}
-          {lang === "eng" && (
-            <li key={ID} className={hidden}>
-              <p>{this.capitalizeFirstLetter(words)}</p>
-            </li>
-          )}
-        </React.Fragment>
-      );
-    } else {
-      return (
-        <React.Fragment>
-          {lang === "pl" && (
-            <li key={ID} className={hidden}>
-              <p>{this.capitalizeFirstLetter(words)}</p>
-            </li>
-          )}
-          {lang === "eng" && (
-            <li key={ID} onClick={this.handleClick} className={hidden}>
-              <p className={this.state.active ? null : "hidden-p"}>
-                {this.capitalizeFirstLetter(words)}
-              </p>
-            </li>
-          )}
-        </React.Fragment>
-      );
-    }
+    const {
+      words,
+      isLoading,
+      checkboxActive,
+      search,
+      table,
+      ListType
+    } = this.props;
+
+    const FilteredWords = words.filter(word => word.Type === ListType);
+    return (
+      <div className="list">
+        <h2>{ListType}</h2>
+        <ol>
+          {!isLoading &&
+            FilteredWords.map(word => (
+              <Item
+                ID={word.ID}
+                words={word.PolWord}
+                type={word.type}
+                checkboxActive={checkboxActive}
+                lang="pl"
+                hidden={
+                  search
+                    ? word.EngWord.includes(search)
+                      ? null
+                      : "hidden"
+                    : null
+                }
+              />
+            ))}
+        </ol>
+
+        <ul>
+          {!isLoading &&
+            FilteredWords.map(word => (
+              <Item
+                ID={word.ID}
+                words={word.EngWord}
+                type={word.type}
+                checkboxActive={checkboxActive}
+                lang="eng"
+                hidden={
+                  search
+                    ? word.EngWord.includes(search)
+                      ? null
+                      : "hidden"
+                    : null
+                }
+              />
+            ))}
+        </ul>
+        <ul className="btn-list">
+          <FormRemove
+            isLoading={isLoading}
+            search={search}
+            table={table}
+            words={FilteredWords}
+          />
+        </ul>
+      </div>
+    );
   }
 }
 export default ListItem;
-
 {
   /* <ol>
             {!isLoading &&

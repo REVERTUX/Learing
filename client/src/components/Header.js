@@ -3,7 +3,7 @@ import Form from "./FormAdd";
 
 class Header extends Component {
   render() {
-    const { header, searched } = this.props;
+    const { header, table } = this.props;
     return (
       <div>
         <h1>{header}</h1>
@@ -23,7 +23,7 @@ class Header extends Component {
             value={this.props.search}
           />
         </div>
-        <Form searched={searched} />
+        <Form table={table} />
       </div>
     );
   }

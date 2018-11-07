@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class FormAdd extends Component {
   render() {
-    const { searched } = this.props;
+    const { table } = this.props;
     return (
       <form action="http://localhost:3001/addNewWord" method="POST">
         <label htmlFor="">Eng: </label>
@@ -14,7 +14,7 @@ class FormAdd extends Component {
           <option value="noun">Noun</option>
           <option value="adjective">Adjective</option>
         </select>
-        <input type="hidden" name="table" value={searched} />
+        <input type="hidden" name="table" value={table} />
         <button type="submit">Add</button>
       </form>
     );

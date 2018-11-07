@@ -55,17 +55,41 @@ class Layout extends Component {
 
   render() {
     const { words, isLoading, checkboxActive, search } = this.state;
-    const { header, searched } = this.props;
+    const { header, table } = this.props;
     return (
       <div className="container">
         <Header
           handleSearchChange={this.handleSearchChange}
           handleCheckboxChange={this.handleCheckboxChange}
           header={header}
-          searched={searched}
+          table={table}
         />
         <div className="content">
-          <ol>
+          <ListItem
+            words={words}
+            isLoading={isLoading}
+            checkboxActive={checkboxActive}
+            search={search}
+            table={table}
+            ListType={"verb"}
+          />
+          <ListItem
+            words={words}
+            isLoading={isLoading}
+            checkboxActive={checkboxActive}
+            search={search}
+            table={table}
+            ListType={"noun"}
+          />
+          <ListItem
+            words={words}
+            isLoading={isLoading}
+            checkboxActive={checkboxActive}
+            search={search}
+            table={table}
+            ListType={"adjective"}
+          />
+          {/* <ol>
             {!isLoading &&
               words.map(words => (
                 <ListItem
@@ -111,7 +135,7 @@ class Layout extends Component {
               searched={searched}
               words={words}
             />
-          </ul>
+          </ul> */}
           {/* <ol>
             {!isLoading &&
               words.map(words => (
