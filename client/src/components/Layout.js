@@ -71,7 +71,7 @@ class Layout extends Component {
             checkboxActive={checkboxActive}
             search={search}
             table={table}
-            ListType={"verb"}
+            listType={"verb"}
           />
           <ListItem
             words={words}
@@ -79,7 +79,7 @@ class Layout extends Component {
             checkboxActive={checkboxActive}
             search={search}
             table={table}
-            ListType={"noun"}
+            listType={"noun"}
           />
           <ListItem
             words={words}
@@ -87,7 +87,7 @@ class Layout extends Component {
             checkboxActive={checkboxActive}
             search={search}
             table={table}
-            ListType={"adjective"}
+            listType={"adjective"}
           />
           {/* <ol>
             {!isLoading &&

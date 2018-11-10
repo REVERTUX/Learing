@@ -20,6 +20,20 @@ class App extends Component {
       {
         path: "/things",
         content: () => <Layout header={"Things"} table={"things"} />
+      },
+      {
+        path: "/features",
+        content: () => <Layout header={"Features"} table={"features"} />
+      },
+      {
+        path: "/character_traits",
+        content: () => (
+          <Layout header={"Character traits"} table={"character_traits"} />
+        )
+      },
+      {
+        path: "/phrases",
+        content: () => <Layout header={"Phrases"} table={"phrases"} />
       }
     ];
     return (
@@ -34,8 +48,6 @@ class App extends Component {
               render={route.content}
             />
           ))}
-          {/* <Route exact path="/" component={Layout} />
-          <Route path="/about" component={Home} /> */}
         </div>
       </Router>
     );

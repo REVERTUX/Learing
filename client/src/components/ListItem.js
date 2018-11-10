@@ -9,13 +9,13 @@ class ListItem extends Component {
       checkboxActive,
       search,
       table,
-      ListType
+      listType
     } = this.props;
 
-    const FilteredWords = words.filter(word => word.Type === ListType);
+    const FilteredWords = words.filter(word => word.Type === listType);
     return (
       <div className="list">
-        <h2>{ListType}</h2>
+        <h2>{listType}</h2>
         <ol>
           {!isLoading &&
             FilteredWords.map(word => (
