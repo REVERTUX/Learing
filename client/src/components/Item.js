@@ -16,7 +16,7 @@ class Item extends Component {
   };
 
   render() {
-    const { lang, ID, words, checkboxActive, hidden, type } = this.props;
+    const { lang, ID, words, checkboxActive, hidden } = this.props;
     if (checkboxActive) {
       return (
         <React.Fragment>

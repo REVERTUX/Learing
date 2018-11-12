@@ -6,24 +6,23 @@ class ListItem extends Component {
     const {
       words,
       isLoading,
-      checkboxActive,
+      checkboxLang,
+      checkboxeDel,
       search,
-      table,
-      listType
+      table
     } = this.props;
 
-    const FilteredWords = words.filter(word => word.Type === listType);
     return (
       <div className="list">
-        <h2>{listType}</h2>
         <ol>
           {!isLoading &&
-            FilteredWords.map(word => (
+            words.map(word => (
               <Item
+                key={word.ID}
                 ID={word.ID}
                 words={word.PolWord}
                 type={word.type}
-                checkboxActive={checkboxActive}
+                checkboxActive={checkboxLang}
                 lang="pl"
                 hidden={
                   search
@@ -38,12 +37,13 @@ class ListItem extends Component {
 
         <ul>
           {!isLoading &&
-            FilteredWords.map(word => (
+            words.map(word => (
               <Item
+                key={word.ID}
                 ID={word.ID}
                 words={word.EngWord}
                 type={word.type}
-                checkboxActive={checkboxActive}
+                checkboxActive={checkboxLang}
                 lang="eng"
                 hidden={
                   search
@@ -55,93 +55,18 @@ class ListItem extends Component {
               />
             ))}
         </ul>
-        <ul className="btn-list">
-          <FormRemove
-            isLoading={isLoading}
-            search={search}
-            table={table}
-            words={FilteredWords}
-          />
-        </ul>
+        {checkboxeDel && (
+          <ul className="btn-list">
+            <FormRemove
+              isLoading={isLoading}
+              search={search}
+              table={table}
+              words={words}
+            />
+          </ul>
+        )}
       </div>
     );
   }
 }
 export default ListItem;
-{
-  /* <ol>
-            {!isLoading &&
-              words.map(words => (
-                <ListItem
-                  Id={words.Id}
-                  words={words.PolWord}
-                  checkboxActive={checkboxActive}
-                  lang="pl"
-                  hidden={
-                    search
-                      ? words.EngWord.includes(search)
-                        ? null
-                        : "hidden"
-                      : null
-                  }
-                />
-              ))}
-          </ol>
-
-          <ul>
-            {!isLoading &&
-              words.map(words => (
-                <ListItem
-                  Id={words.Id}
-                  words={words.EngWord}
-                  checkboxActive={checkboxActive}
-                  lang="eng"
-                  hidden={
-                    search
-                      ? words.EngWord.includes(search)
-                        ? null
-                        : "hidden"
-                      : null
-                  }
-                />
-              ))}
-          </ul> */
-}
-// render() {
-//   const { lang, Id, words, checkboxActive, hidden } = this.props;
-//   if (checkboxActive) {
-//     return (
-//       <React.Fragment>
-//         {lang === "pl" && (
-//           <li key={Id} onClick={this.handleClick} className={hidden}>
-//             <p className={this.state.active ? null : "hidden-p"}>
-//               {this.capitalizeFirstLetter(words)}
-//             </p>
-//           </li>
-//         )}
-//         {lang === "eng" && (
-//           <li key={Id} className={hidden}>
-//             <p>{this.capitalizeFirstLetter(words)}</p>
-//           </li>
-//         )}
-//       </React.Fragment>
-//     );
-//   } else {
-//     return (
-//       <React.Fragment>
-//         {lang === "pl" && (
-//           <li key={Id} className={hidden}>
-//             <p>{this.capitalizeFirstLetter(words)}</p>
-//           </li>
-//         )}
-//         {lang === "eng" && (
-//           <li key={Id} onClick={this.handleClick} className={hidden}>
-//             <p className={this.state.active ? null : "hidden-p"}>
-//               {this.capitalizeFirstLetter(words)}
-//             </p>
-//           </li>
-//         )}
-//       </React.Fragment>
-//     );
-//   }
-// }

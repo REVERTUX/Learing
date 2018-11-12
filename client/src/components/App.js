@@ -14,6 +14,28 @@ class App extends Component {
         content: () => <Home />
       },
       {
+        path: "/adjectives",
+        content: () => <Layout header={"Adjectives"} table={"adjectives"} />
+      },
+      {
+        path: "/nouns",
+        content: () => <Layout header={"Nouns"} table={"nouns"} />
+      },
+      {
+        path: "/verbs",
+        content: () => <Layout header={"Verbs"} table={"verbs"} />
+      },
+      {
+        path: "/adverbs_and_other",
+        content: () => (
+          <Layout header={"Adverb and other"} table={"adverbs_and_other"} />
+        )
+      },
+      {
+        path: "/phrases",
+        content: () => <Layout header={"Phrases"} table={"phrases"} />
+      },
+      {
         path: "/body",
         content: () => <Layout header={"Body"} table={"body"} />
       },
@@ -30,10 +52,6 @@ class App extends Component {
         content: () => (
           <Layout header={"Character traits"} table={"character_traits"} />
         )
-      },
-      {
-        path: "/phrases",
-        content: () => <Layout header={"Phrases"} table={"phrases"} />
       }
     ];
     return (

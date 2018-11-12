@@ -88,3 +88,27 @@ button {
 label {
   color: #ffffff;
 }
+
+.inline {
+  display: inline-block;
+}
+
+.invalidValue {
+  font-size: 1.2rem;
+  color: red;
+  display: inline;
+}
+.nav {
+  ul {
+    display: flex;
+    list-style: none;
+    li {
+      padding: 5px;
+      border: 1px #ffffff solid;
+      a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+    }
+  }
+}

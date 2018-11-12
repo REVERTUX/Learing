@@ -13,11 +13,13 @@ var connection = mysql.createConnection({
 router.post("/", function(req, res) {
   response = {
     EngWord: req.body.eng,
-    PolWord: req.body.pol,
-    Type: req.body.type
+    PolWord: req.body.pol
+    // Type: req.body.type
   };
+
   const table = req.body.table;
-  const regex = /[a-zA-Z/ęółśążźćń]{3,}/;
+  const regex = /[a-zA-Z/()ęółśążźćń]{3,}/;
+
   if (regex.test(response.PolWord) && regex.test(response.EngWord)) {
     connection.query(`INSERT INTO ${table} SET ?`, response, function(
       err,
