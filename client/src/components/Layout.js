@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ListItem from "./ListItem";
 import Header from "./Header";
+import Search from "./GlobalSearch";
 class Layout extends Component {
   constructor(props) {
     super(props);
@@ -10,8 +11,9 @@ class Layout extends Component {
       checkboxLang: false,
       checkboxeDel: false,
       search: "",
-      validAdd: "",
-      invalidValue: false
+      engWord: "",
+      invalidValue: false,
+      showHideSidenav: "hidden"
     };
   }
 
@@ -48,27 +50,19 @@ class Layout extends Component {
     });
   };
 
-  handleCheckboxChange = e => {
-    if (e.target.name === "pl/eng") {
-      this.setState({
-        checkboxLang: e.target.checked
-      });
-    } else {
-      this.setState({
-        checkboxeDel: e.target.checked
-      });
-    }
-  };
+  handleInputChange = e => {
+    const target = e.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
 
-  handleSearchChange = e => {
     this.setState({
-      search: e.target.value
+      [name]: value
     });
   };
 
-  handleValidClick = e => {
+  handleSubmit = e => {
     this.state.words.map(word => {
-      if (word.EngWord === this.state.validAdd) {
+      if (word.EngWord === this.state.engWord) {
         e.preventDefault();
         this.setState({
           invalidValue: true
@@ -77,44 +71,44 @@ class Layout extends Component {
     });
   };
 
-  handleAddChange = e => {
-    this.setState({
-      validAdd: e.target.value
-    });
-  };
-
   render() {
     const {
       words,
       isLoading,
+      checkboxDel,
       checkboxLang,
-      checkboxeDel,
       search,
-      invalidValue
+      invalidValue,
+      showHideSidenav
     } = this.state;
     const { header, table } = this.props;
     return (
-      <div className="container">
+      <React.Fragment>
         <Header
-          handleSearchChange={this.handleSearchChange}
-          handleCheckboxChange={this.handleCheckboxChange}
-          handleAddChange={this.handleAddChange}
-          handleValidClick={this.handleValidClick}
+          handleInputChange={this.handleInputChange}
+          handleSubmit={this.handleSubmit}
           header={header}
           table={table}
           invalidValue={invalidValue}
+          showHideSidenav={showHideSidenav}
         />
         <div className="content">
-          <ListItem
-            words={words}
-            isLoading={isLoading}
-            checkboxLang={checkboxLang}
-            checkboxeDel={checkboxeDel}
-            search={search}
-            table={table}
-          />
+          <div className="words-list">
+            <ListItem
+              words={words}
+              isLoading={isLoading}
+              checkboxLang={checkboxLang}
+              checkboxDel={checkboxDel}
+              search={search}
+              table={table}
+            />
+          </div>
+          {/* <button className="search-btn" onClick={this.handleClick}>
+            Toogle global search
+          </button> */}
+          <Search />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

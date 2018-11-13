@@ -8,39 +8,42 @@ class Header extends Component {
       table,
       search,
       invalidValue,
-      handleCheckboxChange,
-      handleSearchChange,
-      handleAddChange,
-      handleValidClick
+      handleInputChange,
+      handleSubmit
     } = this.props;
     return (
-      <div>
+      <div className="header">
         <h1>{header}</h1>
         <div className="fixed-checkbox">
           <label htmlFor="checkbox">pl/eng</label>
           <input
             type="checkbox"
-            onChange={handleCheckboxChange}
+            onChange={handleInputChange}
             id="checkbox"
-            name="pl/eng"
+            name="checkboxLang"
           />
           <label htmlFor="checkbox-btn">del-btn</label>
           <input
             type="checkbox"
-            onChange={handleCheckboxChange}
+            onChange={handleInputChange}
             id="checkbox-btn"
-            name="del"
+            name="checkboxDel"
           />
         </div>
         <div className="search">
           <label htmlFor="">Search: </label>
-          <input type="text" onChange={handleSearchChange} value={search} />
+          <input
+            type="search"
+            name="search"
+            onChange={handleInputChange}
+            value={search}
+          />
         </div>
         <Form
           table={table}
           invalidValue={invalidValue}
-          handleAddChange={handleAddChange}
-          handleValidClick={handleValidClick}
+          handleInputChange={handleInputChange}
+          handleSubmit={handleSubmit}
         />
       </div>
     );

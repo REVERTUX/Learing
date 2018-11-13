@@ -7,7 +7,7 @@ class ListItem extends Component {
       words,
       isLoading,
       checkboxLang,
-      checkboxeDel,
+      checkboxDel,
       search,
       table
     } = this.props;
@@ -18,11 +18,10 @@ class ListItem extends Component {
           {!isLoading &&
             words.map(word => (
               <Item
-                key={word.ID}
                 ID={word.ID}
                 words={word.PolWord}
                 type={word.type}
-                checkboxActive={checkboxLang}
+                checkboxLang={checkboxLang}
                 lang="pl"
                 hidden={
                   search
@@ -39,11 +38,10 @@ class ListItem extends Component {
           {!isLoading &&
             words.map(word => (
               <Item
-                key={word.ID}
                 ID={word.ID}
                 words={word.EngWord}
                 type={word.type}
-                checkboxActive={checkboxLang}
+                checkboxLang={checkboxLang}
                 lang="eng"
                 hidden={
                   search
@@ -55,7 +53,7 @@ class ListItem extends Component {
               />
             ))}
         </ul>
-        {checkboxeDel && (
+        {checkboxDel && (
           <ul className="btn-list">
             <FormRemove
               isLoading={isLoading}

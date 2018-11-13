@@ -1,0 +1,63 @@
+%input-style {
+  color: #ffffff;
+  margin: 5px 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  border-bottom: 1px #ffffff solid;
+}
+
+.header {
+  grid-area: header;
+
+  h1 {
+    color: #808080;
+    text-align: center;
+    margin: 0;
+  }
+
+  .fixed-checkbox {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 20px;
+    right: 30px;
+  }
+
+  .search {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 55px;
+    input {
+      width: 150px;
+    }
+  }
+
+  form {
+    display: flex;
+    width: 200px;
+    margin: 20px 0 0 50px;
+    padding: 5px;
+    flex-direction: column;
+
+    .invalidValue {
+      font-size: 1.2rem;
+      color: red;
+      display: inline;
+    }
+
+    button {
+      margin: 5px 0;
+      width: 50%;
+      height: 30px;
+      background: #494949;
+      border-radius: 5px;
+      border: 0;
+      color: #cacaca;
+
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+}

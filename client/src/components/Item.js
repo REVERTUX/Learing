@@ -16,20 +16,37 @@ class Item extends Component {
   };
 
   render() {
-    const { lang, ID, words, checkboxActive, hidden } = this.props;
-    if (checkboxActive) {
+    const { lang, words, checkboxLang, hidden } = this.props;
+    if (checkboxLang === true) {
       return (
         <React.Fragment>
           {lang === "pl" && (
-            <li key={ID} onClick={this.handleClick} className={hidden}>
+            <li onClick={this.handleClick} className={hidden}>
               <p className={this.state.active ? null : "hidden-p"}>
                 {this.capitalizeFirstLetter(words)}
               </p>
             </li>
           )}
           {lang === "eng" && (
-            <li key={ID} className={hidden}>
+            <li className={hidden}>
               <p>{this.capitalizeFirstLetter(words)}</p>
+            </li>
+          )}
+        </React.Fragment>
+      );
+    } else if (checkboxLang === false) {
+      return (
+        <React.Fragment>
+          {lang === "pl" && (
+            <li className={hidden}>
+              <p>{this.capitalizeFirstLetter(words)}</p>
+            </li>
+          )}
+          {lang === "eng" && (
+            <li onClick={this.handleClick} className={hidden}>
+              <p className={this.state.active ? null : "hidden-p"}>
+                {this.capitalizeFirstLetter(words)}
+              </p>
             </li>
           )}
         </React.Fragment>
@@ -38,15 +55,13 @@ class Item extends Component {
       return (
         <React.Fragment>
           {lang === "pl" && (
-            <li key={ID} className={hidden}>
+            <li className={hidden}>
               <p>{this.capitalizeFirstLetter(words)}</p>
             </li>
           )}
           {lang === "eng" && (
-            <li key={ID} onClick={this.handleClick} className={hidden}>
-              <p className={this.state.active ? null : "hidden-p"}>
-                {this.capitalizeFirstLetter(words)}
-              </p>
+            <li onClick={this.handleClick} className={hidden}>
+              <p>{this.capitalizeFirstLetter(words)}</p>
             </li>
           )}
         </React.Fragment>

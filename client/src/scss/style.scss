@@ -1,70 +1,47 @@
+@import "_nav.scss";
+@import "_header.scss";
+@import "_content.scss";
+%input-style {
+  color: #ffffff;
+  margin: 5px 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  border-bottom: 1px #ffffff solid;
+}
+
+* {
+  box-sizing: border-box;
+}
 body {
   background-color: #202020;
+  margin: 0;
+  font-size: 0.8rem;
+  font-family: "Open Sans", sans-serif;
 }
+
 p {
   margin: 0;
 }
-.container {
-  font-size: 0.9rem;
-  font-family: "Open Sans", sans-serif;
-  h1 {
-    text-align: center;
-  }
-  .list {
-    margin: 50px;
-  }
 
-  .content {
-    display: flex;
-    justify-content: center;
-    .btn-list {
-      padding: 0 0 0 20px;
-      li {
-        border: none;
-        padding: 3px;
-      }
-    }
-    ul,
-    ol {
-      color: #ffffff;
-    }
-    ol {
-      margin: 0;
-      padding: 0 10px;
-      display: inline-block;
+input {
+  @extend %input-style;
+}
 
-      li {
-        padding: 2px;
-        height: 30px;
-        margin: 5px 0;
-        border: 1px solid #000;
-        text-align: right;
-        cursor: pointer;
-        &:link {
-          color: white;
-        }
-      }
-    }
+button {
+  cursor: pointer;
+}
 
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0 10px;
-      display: inline-block;
+label {
+  color: #ffffff;
+}
 
-      li {
-        padding: 2px;
-        height: 30px;
-        margin: 5px 0;
-        border: 1px solid #000;
-        text-align: right;
-        cursor: pointer;
-        &:link {
-          color: white;
-        }
-      }
-    }
-  }
+ul,
+ol {
+  margin: 0;
+  padding: 0 10px;
+  color: #ffffff;
+  display: inline-block;
 }
 
 .hidden {
@@ -74,41 +51,10 @@ p {
 .hidden-p {
   opacity: 0;
 }
-
-button {
-  cursor: pointer;
-}
-
-.fixed-checkbox {
-  position: fixed;
-  top: 50px;
-  right: 30px;
-}
-
-label {
-  color: #ffffff;
-}
-
-.inline {
-  display: inline-block;
-}
-
-.invalidValue {
-  font-size: 1.2rem;
-  color: red;
-  display: inline;
-}
-.nav {
-  ul {
-    display: flex;
-    list-style: none;
-    li {
-      padding: 5px;
-      border: 1px #ffffff solid;
-      a {
-        color: #ffffff;
-        text-decoration: none;
-      }
-    }
-  }
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "header header header header header header"
+    "nav content content content content .";
 }

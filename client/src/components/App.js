@@ -56,7 +56,7 @@ class App extends Component {
     ];
     return (
       <Router>
-        <div>
+        <div className="container">
           <Nav />
           {routes.map((route, index) => (
             <Route

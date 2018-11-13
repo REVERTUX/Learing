@@ -12,8 +12,8 @@ var connection = mysql.createConnection({
 
 router.post("/", function(req, res) {
   response = {
-    EngWord: req.body.eng,
-    PolWord: req.body.pol
+    EngWord: req.body.engWord,
+    PolWord: req.body.polWord
     // Type: req.body.type
   };
 
