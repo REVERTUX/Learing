@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class Item extends Component {
   constructor(props) {
@@ -16,42 +18,8 @@ class Item extends Component {
   };
 
   render() {
-    const { lang, words, checkboxLang, hidden } = this.props;
-    if (checkboxLang === true) {
-      return (
-        <React.Fragment>
-          {lang === "pl" && (
-            <li onClick={this.handleClick} className={hidden}>
-              <p className={this.state.active ? null : "hidden-p"}>
-                {this.capitalizeFirstLetter(words)}
-              </p>
-            </li>
-          )}
-          {lang === "eng" && (
-            <li className={hidden}>
-              <p>{this.capitalizeFirstLetter(words)}</p>
-            </li>
-          )}
-        </React.Fragment>
-      );
-    } else if (checkboxLang === false) {
-      return (
-        <React.Fragment>
-          {lang === "pl" && (
-            <li className={hidden}>
-              <p>{this.capitalizeFirstLetter(words)}</p>
-            </li>
-          )}
-          {lang === "eng" && (
-            <li onClick={this.handleClick} className={hidden}>
-              <p className={this.state.active ? null : "hidden-p"}>
-                {this.capitalizeFirstLetter(words)}
-              </p>
-            </li>
-          )}
-        </React.Fragment>
-      );
-    } else {
+    const { lang, words, hidden, showAll, changeLang } = this.props;
+    if (showAll) {
       return (
         <React.Fragment>
           {lang === "pl" && (
@@ -67,6 +35,50 @@ class Item extends Component {
         </React.Fragment>
       );
     }
+    if (changeLang === true) {
+      return (
+        <React.Fragment>
+          {lang === "pl" && (
+            <li onClick={this.handleClick} className={hidden}>
+              <p className={this.state.active ? null : "hidden-p"}>
+                {this.capitalizeFirstLetter(words)}
+              </p>
+            </li>
+          )}
+          {lang === "eng" && (
+            <li className={hidden}>
+              <p>{this.capitalizeFirstLetter(words)}</p>
+            </li>
+          )}
+        </React.Fragment>
+      );
+    } else if (changeLang === false) {
+      return (
+        <React.Fragment>
+          {lang === "pl" && (
+            <li className={hidden}>
+              <p>{this.capitalizeFirstLetter(words)}</p>
+            </li>
+          )}
+          {lang === "eng" && (
+            <li onClick={this.handleClick} className={hidden}>
+              <p className={this.state.active ? null : "hidden-p"}>
+                {this.capitalizeFirstLetter(words)}
+              </p>
+            </li>
+          )}
+        </React.Fragment>
+      );
+    }
   }
 }
-export default Item;
+
+Item.propTypes = {
+  changeLang: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+  changeLang: state.list.changeLang
+});
+
+export default connect(mapStateToProps)(Item);

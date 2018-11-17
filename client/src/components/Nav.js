@@ -24,19 +24,6 @@ class Nav extends Component {
           <li>
             <Link to="/phrases">Phrases</Link>
           </li>
-          {/*  */}
-          <li>
-            <Link to="/body">Body</Link>
-          </li>
-          <li>
-            <Link to="/things">Things</Link>
-          </li>
-          <li>
-            <Link to="/features">Features</Link>
-          </li>
-          <li>
-            <Link to="/character_traits">Character traits</Link>
-          </li>
         </ul>
       </div>
     );

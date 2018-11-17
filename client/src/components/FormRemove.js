@@ -1,16 +1,18 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class FormRemove extends Component {
   render() {
-    const { search, isLoading, words, table } = this.props;
+    const { searches, fetching, words, table } = this.props;
     return (
       <React.Fragment>
-        {!isLoading &&
+        {!fetching &&
           words.map(words => (
             <li
               className={
-                search
-                  ? words.EngWord.includes(search)
+                searches
+                  ? words.EngWord.includes(searches)
                     ? null
                     : "hidden"
                   : null
@@ -30,4 +32,18 @@ class FormRemove extends Component {
   }
 }
 
-export default FormRemove;
+FormRemove.propTypes = {
+  words: PropTypes.array.isRequired,
+  fetching: PropTypes.bool.isRequired,
+  searches: PropTypes.string.isRequired,
+  table: PropTypes.string.isRequired
+};
+
+const mapStateToProps = state => ({
+  words: state.words.items,
+  fetching: state.words.fetching,
+  table: state.words.currentTable,
+  searches: state.list.searches
+});
+
+export default connect(mapStateToProps)(FormRemove);

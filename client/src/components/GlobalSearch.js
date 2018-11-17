@@ -1,99 +1,70 @@
 import React, { Component } from "react";
 import ListItem from "./ListItem";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { fetchAllWords } from "../actions/allWordsAction";
+import { handleInputChange, setSideBarValue } from "./../actions/listActions";
+
 class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      words: [],
-      search: "",
-      isLoading: true,
-      showHideSidenav: "hidden",
-      tables: ["adjectives", "nouns", "phrases", "verbs"]
-    };
-  }
-
-  // componentDidMount() {
-  //   this.getWords();
-  // }
-
-  getWords = () => {
-    this.state.tables.map(tab => {
-      this.setState({ isLoading: true });
-      fetch("/showWords", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          table: tab
-        })
-      }).then(res => {
-        if (res.ok) {
-          res.json().then(words =>
-            this.setState({
-              words: [...this.state.words, ...words]
-            })
-          );
-        } else {
-          console.log(
-            "Network request for words.json failed with response " +
-              res.status +
-              ": " +
-              res.statusText
-          );
-        }
-      });
-    });
-    this.setState({
-      isLoading: false
-    });
-  };
-
-  handleInputChange = e => {
-    this.setState({
-      search: e.target.value
-    });
-  };
-
   handleClick = e => {
-    var css = this.state.showHideSidenav === "hidden" ? "show" : "hidden";
-    this.setState({
-      showHideSidenav: css
-    });
-    if (css === "show") {
-      this.getWords();
+    const {
+      sideBar,
+      setSideBarValue,
+      tables,
+      allWords,
+      fetchAllWords
+    } = this.props;
+
+    var css = sideBar === "hidden" ? "show" : "hidden";
+    setSideBarValue(css);
+    if (css === "show" && allWords.length === 0) {
+      tables.map(tab => {
+        fetchAllWords(tab);
+      });
     }
   };
 
   render() {
-    const { words, search, isLoading, showHideSidenav } = this.state;
+    const { handleInputChange, sideBar } = this.props;
     return (
       <React.Fragment>
         <button onClick={this.handleClick} className="search-btn">
           Toogle global search
         </button>
-
-        <div className={`${showHideSidenav} search-list`}>
+        <div className={`${sideBar} search-list`}>
           <div className="search-bar">
-            <label htmlFor="">Global search: </label>
+            <label htmlFor="globalsearch">Global search: </label>
             <input
               type="search"
-              value={search}
-              onChange={this.handleInputChange}
+              onChange={handleInputChange}
+              name="globalSearch"
+              id="globalsearch"
             />
           </div>
-          <ListItem
-            words={words}
-            isLoading={isLoading}
-            checkboxLang={null}
-            checkboxeDel={false}
-            search={search}
-            table={"table"}
-          />
+          <ListItem showAll={true} />
         </div>
       </React.Fragment>
     );
   }
 }
 
-export default Search;
+Search.propTypes = {
+  fetchAllWords: PropTypes.func.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  allWords: PropTypes.array.isRequired,
+  tables: PropTypes.array.isRequired,
+  fetched: PropTypes.bool.isRequired,
+  sideBar: PropTypes.string.isRequired
+};
+
+const mapStateToProps = state => ({
+  allWords: state.allWords.allItems,
+  fetched: state.allWords.fetched,
+  sideBar: state.list.sideBar,
+  tables: state.list.tables
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchAllWords, handleInputChange, setSideBarValue }
+)(Search);

@@ -1,53 +1,59 @@
 import React, { Component } from "react";
-import Form from "./FormAdd";
+import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
+import FormAdd from "./FormAdd";
+
+import { handleInputChange } from "./../actions/listActions";
 
 class Header extends Component {
   render() {
-    const {
-      header,
-      table,
-      search,
-      invalidValue,
-      handleInputChange,
-      handleSubmit
-    } = this.props;
+    const { table, searches, handleInputChange } = this.props;
     return (
       <div className="header">
-        <h1>{header}</h1>
+        <h1>{table}</h1>
         <div className="fixed-checkbox">
           <label htmlFor="checkbox">pl/eng</label>
           <input
             type="checkbox"
             onChange={handleInputChange}
             id="checkbox"
-            name="checkboxLang"
+            name="changeLang"
           />
           <label htmlFor="checkbox-btn">del-btn</label>
           <input
             type="checkbox"
             onChange={handleInputChange}
             id="checkbox-btn"
-            name="checkboxDel"
+            name="showDelBtn"
           />
         </div>
         <div className="search">
-          <label htmlFor="">Search: </label>
+          <label htmlFor="search">Search: </label>
           <input
             type="search"
-            name="search"
+            name="searches"
+            id="search"
             onChange={handleInputChange}
-            value={search}
+            value={searches}
           />
         </div>
-        <Form
-          table={table}
-          invalidValue={invalidValue}
-          handleInputChange={handleInputChange}
-          handleSubmit={handleSubmit}
-        />
+        <FormAdd />
       </div>
     );
   }
 }
 
-export default Header;
+Header.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+  searches: PropTypes.string.isRequired,
+  table: PropTypes.string.isRequired
+};
+const mapStateToProps = state => ({
+  table: state.words.currentTable,
+  searches: state.list.searches
+});
+
+export default connect(
+  mapStateToProps,
+  { handleInputChange }
+)(Header);
