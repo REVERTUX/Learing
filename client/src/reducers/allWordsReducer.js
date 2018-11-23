@@ -7,7 +7,6 @@ import {
 const initialState = {
   allItems: [],
   items: [],
-  item: {},
   fetching: false,
   fetched: false,
   error: null

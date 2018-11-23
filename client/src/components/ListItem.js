@@ -23,7 +23,6 @@ class ListItem extends Component {
                 <Item
                   ID={word.ID}
                   words={word.PolWord}
-                  type={word.type}
                   showAll={showAll}
                   lang="pl"
                   hidden={
@@ -43,7 +42,6 @@ class ListItem extends Component {
                 <Item
                   ID={word.ID}
                   words={word.EngWord}
-                  type={word.type}
                   showAll={showAll}
                   lang="eng"
                   hidden={
@@ -67,7 +65,6 @@ class ListItem extends Component {
                 <Item
                   ID={word.ID}
                   words={word.PolWord}
-                  type={word.type}
                   showAll={showAll}
                   lang="pl"
                   hidden={
@@ -87,7 +84,6 @@ class ListItem extends Component {
                 <Item
                   ID={word.ID}
                   words={word.EngWord}
-                  type={word.type}
                   showAll={showAll}
                   lang="eng"
                   hidden={

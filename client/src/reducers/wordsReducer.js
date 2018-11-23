@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   items: [],
-  item: {},
+  itemsTables: [],
   currentTable: "",
   fetching: false,
   fetched: false,
@@ -26,7 +26,8 @@ export default function(state = initialState, action) {
         ...state,
         fetching: false,
         fetched: true,
-        items: action.payload
+        items: action.payload,
+        itemsTables: action.payload
       };
     }
 

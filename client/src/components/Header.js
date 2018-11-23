@@ -11,6 +11,7 @@ class Header extends Component {
     return (
       <div className="header">
         <h1>{table}</h1>
+        <p>asdasd</p>
         <div className="fixed-checkbox">
           <label htmlFor="checkbox">pl/eng</label>
           <input
