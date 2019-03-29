@@ -1,11 +1,11 @@
-%input-style {
-  color: #ffffff;
-  margin: 5px 0;
-  background: transparent;
-  border: 0;
-  outline: none;
-  border-bottom: 1px #ffffff solid;
-}
+// %input-style {
+//   color: #ffffff;
+//   margin: 5px 0;
+//   background: transparent;
+//   border: 0;
+//   outline: none;
+//   border-bottom: 1px #ffffff solid;
+// }
 
 .header {
   grid-area: header;
@@ -13,7 +13,8 @@
   h1 {
     color: #808080;
     text-align: center;
-    margin: 0;
+    margin: 10px 0 0 0;
+    text-transform: uppercase;
   }
 
   .fixed-checkbox {

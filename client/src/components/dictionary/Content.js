@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import ListItem from "./ListItem";
 import Search from "./GlobalSearch";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { fetchWords } from "./../actions/wordsActions";
 
-class Layout extends Component {
+import { connect } from "react-redux";
+import { fetchWords } from "../../actions/wordsActions";
+
+import DivContent from "./../../styledComponent/content/Div/DivContent";
+
+class Content extends Component {
   componentWillMount() {
     const { fetchWords } = this.props;
     fetchWords(this.props.table);
@@ -15,18 +18,16 @@ class Layout extends Component {
     const { fetching } = this.props;
     return (
       <React.Fragment>
-        <div className="content">
-          <div className="words-list">
-            <ListItem isLoading={fetching} />
-          </div>
+        <DivContent>
+          <ListItem isLoading={fetching} />
           <Search />
-        </div>
+        </DivContent>
       </React.Fragment>
     );
   }
 }
 
-Layout.propTypes = {
+Content.propTypes = {
   fetchWords: PropTypes.func.isRequired,
   searches: PropTypes.string.isRequired
 };
@@ -39,4 +40,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { fetchWords }
-)(Layout);
+)(Content);

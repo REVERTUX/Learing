@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
+
 import FormAdd from "./FormAdd";
 
-import { handleInputChange } from "./../actions/listActions";
+import { handleInputChange } from "../../actions/listActions";
+
+import DivHeader from "../../styledComponent/header/Div/DivHeader";
+import DivCheckbox from "../../styledComponent/header/Div/DivCheckbox";
+import DivSearch from "../../styledComponent/header/Div/DivSearch";
+import Input from "./../../styledComponent/Input/Input";
 
 class Header extends Component {
   render() {
     const { table, searches, handleInputChange } = this.props;
     return (
-      <div className="header">
+      <DivHeader>
         <h1>{table}</h1>
-        <p>asdasd</p>
-        <div className="fixed-checkbox">
+        <DivCheckbox>
           <label htmlFor="checkbox">pl/eng</label>
           <input
             type="checkbox"
@@ -27,19 +32,19 @@ class Header extends Component {
             id="checkbox-btn"
             name="showDelBtn"
           />
-        </div>
-        <div className="search">
+        </DivCheckbox>
+        <DivSearch>
           <label htmlFor="search">Search: </label>
-          <input
+          <Input
             type="search"
             name="searches"
             id="search"
             onChange={handleInputChange}
             value={searches}
           />
-        </div>
+        </DivSearch>
         <FormAdd />
-      </div>
+      </DivHeader>
     );
   }
 }

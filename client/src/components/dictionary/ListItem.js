@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import FormRemove from "./FormRemove";
 import Item from "./Item";
+
+import DivList from "./../../styledComponent/content/Div/DivList";
+import DivBtnList from "./../../styledComponent/content/Div/DivBtnList";
 class ListItem extends Component {
   render() {
     const {
@@ -16,18 +19,18 @@ class ListItem extends Component {
     } = this.props;
     if (showAll) {
       return (
-        <div className="list">
+        <DivList>
           <ol>
             {!fetchingSearch &&
               allWords.map(word => (
                 <Item
-                  ID={word.ID}
-                  words={word.PolWord}
+                  id={word.id}
+                  words={word.polWord}
                   showAll={showAll}
                   lang="pl"
                   hidden={
                     globalSearch
-                      ? word.EngWord.includes(globalSearch)
+                      ? word.engWord.includes(globalSearch)
                         ? null
                         : "hidden"
                       : null
@@ -40,13 +43,13 @@ class ListItem extends Component {
             {!fetchingSearch &&
               allWords.map(word => (
                 <Item
-                  ID={word.ID}
-                  words={word.EngWord}
+                  id={word.id}
+                  words={word.engWord}
                   showAll={showAll}
                   lang="eng"
                   hidden={
                     globalSearch
-                      ? word.EngWord.includes(globalSearch)
+                      ? word.engWord.includes(globalSearch)
                         ? null
                         : "hidden"
                       : null
@@ -54,22 +57,22 @@ class ListItem extends Component {
                 />
               ))}
           </ul>
-        </div>
+        </DivList>
       );
     } else {
       return (
-        <div className="list">
+        <DivList>
           <ol>
             {!fetching &&
               words.map(word => (
                 <Item
-                  ID={word.ID}
-                  words={word.PolWord}
+                  id={word.id}
+                  words={word.polWord}
                   showAll={showAll}
                   lang="pl"
                   hidden={
                     searches
-                      ? word.EngWord.includes(searches)
+                      ? word.engWord.includes(searches)
                         ? null
                         : "hidden"
                       : null
@@ -82,13 +85,13 @@ class ListItem extends Component {
             {!fetching &&
               words.map(word => (
                 <Item
-                  ID={word.ID}
-                  words={word.EngWord}
+                  id={word.id}
+                  words={word.engWord}
                   showAll={showAll}
                   lang="eng"
                   hidden={
                     searches
-                      ? word.EngWord.includes(searches)
+                      ? word.engWord.includes(searches)
                         ? null
                         : "hidden"
                       : null
@@ -96,12 +99,14 @@ class ListItem extends Component {
                 />
               ))}
           </ul>
-          {this.props.showDelBtn && (
-            <ul className="btn-list">
-              <FormRemove />
-            </ul>
-          )}
-        </div>
+          <DivBtnList>
+            {this.props.showDelBtn && (
+              <ul>
+                <FormRemove />
+              </ul>
+            )}
+          </DivBtnList>
+        </DivList>
       );
     }
   }

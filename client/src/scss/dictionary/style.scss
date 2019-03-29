@@ -1,0 +1,83 @@
+// @import "_nav.scss";
+// @import "_header.scss";
+// @import "_content.scss";
+
+// %input-style {
+//   color: #ffffff;
+//   margin: 5px 0;
+//   background: transparent;
+//   border: 0;
+//   outline: none;
+//   border-bottom: 1px #ffffff solid;
+// }
+
+// * {
+//   box-sizing: border-box;
+// }
+// body {
+//   background-color: #202020;
+//   margin: 0;
+//   font-size: 0.8rem;
+//   font-family: "Open Sans", sans-serif;
+// }
+
+// p {
+//   margin: 0;
+// }
+
+// input[type="text"],
+// input[type="search"] {
+//   color: #ffffff;
+//   margin: 5px 0;
+//   background: transparent;
+//   border: 0;
+//   outline: none;
+//   border-bottom: 1px #ffffff solid;
+// }
+
+// button {
+//   cursor: pointer;
+// }
+
+// label {
+//   color: #ffffff;
+// }
+
+// ul,
+// ol {
+//   margin: 0;
+//   padding: 0 10px;
+//   color: #ffffff;
+//   display: inline-block;
+// }
+
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// input:-webkit-autofill:active {
+//   -webkit-box-shadow: 0 0 0 30px #202020 inset;
+// }
+
+// input:-webkit-autofill {
+//   -webkit-text-fill-color: #ffffff;
+// }
+
+// .hidden {
+//   display: none;
+// }
+
+// .hidden-p {
+//   opacity: 0;
+// }
+// .container {
+//   display: grid;
+//   grid-template-columns: repeat(6, 1fr);
+//   grid-template-areas:
+//     "nav-page nav-page nav-page nav-page nav-page nav-page"
+//     "header header header header header header"
+//     "nav-sub content content content content .";
+// }
+
+// .white-text {
+//   color: #ffffff;
+// }

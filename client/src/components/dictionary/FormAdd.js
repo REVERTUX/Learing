@@ -3,7 +3,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { handleInputChange, setInvalidValue } from "./../actions/listActions";
+import { handleInputChange, setInvalidValue } from "../../actions/listActions";
+
+import Form from "./../../styledComponent/header/Form/Form";
+import DivInvalid from "./../../styledComponent/header/Div/DivInvalid";
+import Button from "./../../styledComponent/header/Button/Button";
+import Input from "./../../styledComponent/Input/Input";
 
 class FormAdd extends Component {
   handleSubmit = e => {
@@ -19,24 +24,22 @@ class FormAdd extends Component {
   render() {
     const { table, handleInputChange, invalidValue } = this.props;
     return (
-      <form action="http://localhost:3001/addNewWord" method="POST">
+      <Form action="http://localhost:3001/addNewWord" method="POST">
         <label htmlFor="eng">Eng: </label>
-        <input
+        <Input
           type="text"
           name="engWord"
           id="eng"
           onChange={handleInputChange}
         />
         <label htmlFor="pol">Pol: </label>
-        <input type="text" name="polWord" id="pol" />
-        <input type="hidden" name="table" value={table} />
-        <button type="submit" onClick={this.handleSubmit}>
+        <Input type="text" name="polWord" id="pol" />
+        <Input type="hidden" name="table" value={table} />
+        <Button type="submit" onClick={this.handleSubmit}>
           Add
-        </button>
-        <div className={invalidValue ? "invalidValue" : "hidden"}>
-          Invalid value
-        </div>
-      </form>
+        </Button>
+        {invalidValue ? <DivInvalid>Invalid value</DivInvalid> : ""}>
+      </Form>
     );
   }
 }

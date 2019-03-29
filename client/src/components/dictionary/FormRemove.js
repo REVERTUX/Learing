@@ -12,16 +12,16 @@ class FormRemove extends Component {
             <li
               className={
                 searches
-                  ? words.EngWord.includes(searches)
+                  ? words.engWord.includes(searches)
                     ? null
                     : "hidden"
                   : null
               }
             >
               <form action="/removeWord" method="POST">
-                <input type="hidden" value={words.ID} name="ID" />
+                <input type="hidden" value={words.id} name="id" />
                 <input type="hidden" value={table} name="table" />
-                <button type="submit" ID={words.ID}>
+                <button type="submit" id={words.id}>
                   -
                 </button>
               </form>

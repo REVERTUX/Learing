@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import ListItem from "./ListItem";
+
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchAllWords } from "../actions/allWordsAction";
-import { handleInputChange, setSideBarValue } from "./../actions/listActions";
+
+import { fetchAllWords } from "../../actions/allWordsAction";
+import { handleInputChange, setSideBarValue } from "../../actions/listActions";
+
+import Button from "./../../styledComponent/content/Button/Button";
+import Input from "./../../styledComponent/Input/Input";
+import DivSearch from "./../../styledComponent/content/Div/DivSearch";
 
 class Search extends Component {
   handleClick = e => {
@@ -11,13 +17,13 @@ class Search extends Component {
       sideBar,
       setSideBarValue,
       tables,
-      allWords,
+      allItems,
       fetchAllWords
     } = this.props;
 
     var css = sideBar === "hidden" ? "show" : "hidden";
     setSideBarValue(css);
-    if (css === "show" && allWords.length === 0) {
+    if (css === "show" && allItems.length === 0) {
       tables.map(tab => {
         fetchAllWords(tab);
       });
@@ -28,13 +34,11 @@ class Search extends Component {
     const { handleInputChange, sideBar } = this.props;
     return (
       <React.Fragment>
-        <button onClick={this.handleClick} className="search-btn">
-          Toogle global search
-        </button>
-        <div className={`${sideBar} search-list`}>
+        <Button onClick={this.handleClick}>Toogle global search</Button>
+        <DivSearch show={sideBar == "hidden" ? true : false}>
           <div className="search-bar">
             <label htmlFor="globalsearch">Global search: </label>
-            <input
+            <Input
               type="search"
               onChange={handleInputChange}
               name="globalSearch"
@@ -42,7 +46,7 @@ class Search extends Component {
             />
           </div>
           <ListItem showAll={true} />
-        </div>
+        </DivSearch>
       </React.Fragment>
     );
   }
@@ -51,14 +55,14 @@ class Search extends Component {
 Search.propTypes = {
   fetchAllWords: PropTypes.func.isRequired,
   handleInputChange: PropTypes.func.isRequired,
-  allWords: PropTypes.array.isRequired,
+  allItems: PropTypes.array.isRequired,
   tables: PropTypes.array.isRequired,
   fetched: PropTypes.bool.isRequired,
   sideBar: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
-  allWords: state.allWords.allItems,
+  allItems: state.allWords.allItems,
   fetched: state.allWords.fetched,
   sideBar: state.list.sideBar,
   tables: state.list.tables

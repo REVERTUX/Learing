@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import "./../scss/style.scss";
-import Layout from "./Layout";
-import Nav from "./Nav";
-import Home from "./HomePage";
-import Header from "./Header";
+import NavPage from "./nav/NavPage";
+import Dictionary from "../pages/Dictionary";
+import ActiveLearning from "../pages/ActiveLearning";
+import Home from "../pages/HomePage";
+import Layout from "./../layout/LayoutDictionary";
 
 class App extends Component {
   render() {
@@ -15,33 +15,20 @@ class App extends Component {
         content: () => <Home />
       },
       {
-        path: "/adjectives",
-        content: () => <Layout header={"Adjectives"} table={"adjectives"} />
+        path: "/dictionary",
+        content: () => <Dictionary />
       },
       {
-        path: "/nouns",
-        content: () => <Layout header={"Nouns"} table={"nouns"} />
-      },
-      {
-        path: "/verbs",
-        content: () => <Layout header={"Verbs"} table={"verbs"} />
-      },
-      {
-        path: "/adverbs_and_other",
-        content: () => (
-          <Layout header={"Adverb and other"} table={"adverbs_and_other"} />
-        )
-      },
-      {
-        path: "/phrases",
-        content: () => <Layout header={"Phrases"} table={"phrases"} />
+        path: "/active_learn",
+        content: () => <ActiveLearning />
       }
     ];
     return (
       <Router>
-        <div className="container">
-          <Header />
-          <Nav />
+        <div>
+          <Layout>
+            <NavPage />
+          </Layout>
           {routes.map((route, index) => (
             <Route
               key={index}
